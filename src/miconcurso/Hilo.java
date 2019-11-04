@@ -18,8 +18,8 @@ public class Hilo extends Thread {
     Scanner sc = new Scanner(System.in);
     private String nombre;
     private Concursante concursante;
-    //int resultado = (int) (Math.random() * 10) + 1;
-    int resultado = 5;
+    int resultado = (int) (Math.random() * 10) + 1;
+    //int resultado = 5; prueba
     int numero;
     long inicio = System.currentTimeMillis();//COJO EL TIEMPO DE EJECUCIÓN ACTUAL
 
