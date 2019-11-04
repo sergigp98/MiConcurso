@@ -10,13 +10,11 @@ package miconcurso;
  * @author Sergio
  */
 public class Concursante {
-    
-    private String nombre;
-    //private int numero;
 
-    public Concursante(String nombre /*int numero*/) {
+    private String nombre;
+
+    public Concursante(String nombre) {
         this.nombre = nombre;
-        //this.numero = numero;
     }
 
     public String getNombre() {
@@ -27,16 +25,4 @@ public class Concursante {
         this.nombre = nombre;
     }
 
-    /*public int getNumero() {
-        return numero;
-    }
-
-    public void setNumero(int numero) {
-        this.numero = numero;
-    }*/
-
-    
-    
-    
-    
 }

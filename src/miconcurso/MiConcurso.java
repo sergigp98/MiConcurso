@@ -17,25 +17,24 @@ public class MiConcurso {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        // TODO code application logic here
-        
-        /*Scanner sc = new Scanner (System.in);
-        System.out.println("Introduce el numero");
-        int numero = sc.nextInt();*/
-        
-        
-        Concursante concursante1 = new Concursante("Sergio");
-        Concursante concursante2 = new Concursante("Juan");
-        
+
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Introduce nombre concursante: ");
+        String nombre = sc.next();
+        sc.nextLine();
+
+        Concursante concursante1 = new Concursante(nombre);
+        System.out.println("Introduce nombre concursante 2: ");
+        String nombre2 = sc.next();
+        sc.nextLine();
+        Concursante concursante2 = new Concursante(nombre2);
+
         Hilo hilo1 = new Hilo("Primer Hilo", concursante1);
         Hilo hilo2 = new Hilo("Segundo Hilo", concursante2);
-        
+
         hilo1.start();
         hilo2.start();
-        
-        
-        
-        
+
     }
-    
+
 }
