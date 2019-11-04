@@ -18,19 +18,21 @@ public class Hilo extends Thread {
     Scanner sc = new Scanner(System.in);
     private String nombre;
     private Concursante concursante;
-    int resultado = (int) (Math.random() * 10) + 1;
+    //int resultado = (int) (Math.random() * 10) + 1;
+    int resultado = 5;
     int numero;
-    long inicio = System.currentTimeMillis();
+    long inicio = System.currentTimeMillis();//COJO EL TIEMPO DE EJECUCIÓN ACTUAL
 
     public Hilo(String nombre, Concursante concursante) {
         this.nombre = nombre;
         this.concursante = concursante;
     }
 
+    //INICIO EL HILO
     public void run() {
 
         //System.out.println("Resultado: " + resultado);
-        System.out.println("El concursante llamado " + concursante.getNombre() + " comienza");
+        System.out.println("El concursante llamado " + concursante.getNombre() + " comienza en el "+ this.nombre+".");
 
         do {
             System.out.println("Introduce numero del 1 al 10");
@@ -40,7 +42,7 @@ public class Hilo extends Thread {
                     break;
                 } else {
                     System.out.println(concursante.getNombre() + " ha fallado. Su numero era: " + numero);
-                    Thread.sleep(5000);
+                    Thread.sleep(4000);//PARO EL HILO/PROCESO DURANTE ESE TIEMPO
                 }
             } catch (InterruptedException ex) {
 
@@ -48,6 +50,7 @@ public class Hilo extends Thread {
 
         } while (resultado != numero);
 
+        //CUANDO ACIERTA EL NUMERO CIERRO EL PROCESO Y SACO EL MENSAJE
         System.out.println("El concursante " + concursante.getNombre() + " ha acertado el resultado");
         if (((System.currentTimeMillis() - inicio) / 1000) == 1) {
             System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundo");
