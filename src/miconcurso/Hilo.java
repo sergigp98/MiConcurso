@@ -32,10 +32,10 @@ public class Hilo extends Thread {
     public void run() {
 
         //System.out.println("Resultado: " + resultado)PRUEBA;
-        System.out.println("El concursante llamado " + concursante.getNombre() + " comienza en el "+ this.nombre+".");
+        System.out.println("El concursante llamado " + concursante.getNombre() + " comienza en el " + this.nombre + ".");
 
         do {
-            System.out.println("Introduce numero del 1 al 10");
+            System.out.println(concursante.getNombre().toUpperCase() + " introduce numero del 1 al 10");
             numero = sc.nextInt();
             try {
                 if (resultado == numero) {
@@ -55,10 +55,13 @@ public class Hilo extends Thread {
         if (((System.currentTimeMillis() - inicio) / 1000) == 1) {
             System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundo");
             System.out.println("TERMINA CONCURSO " + concursante.getNombre());
-            System.out.println("GANADOR " + concursante.getNombre()+" ¡¡¡¡FELICIDADES!!!!");
+            System.out.println("GANADOR " + concursante.getNombre() + " ¡¡¡¡FELICIDADES!!!!");
         } else {
             System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundos");
             System.out.println("TERMINA CONCURSO " + concursante.getNombre());
+            System.out.println("GANADOR " + concursante.getNombre() + " ¡¡¡¡FELICIDADES!!!!");
         }
+
+        System.exit(0);
     }
 }
