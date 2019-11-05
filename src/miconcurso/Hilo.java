@@ -31,7 +31,7 @@ public class Hilo extends Thread {
     //INICIO EL HILO
     public void run() {
 
-        //System.out.println("Resultado: " + resultado);
+        //System.out.println("Resultado: " + resultado)PRUEBA;
         System.out.println("El concursante llamado " + concursante.getNombre() + " comienza en el "+ this.nombre+".");
 
         do {
@@ -55,6 +55,7 @@ public class Hilo extends Thread {
         if (((System.currentTimeMillis() - inicio) / 1000) == 1) {
             System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundo");
             System.out.println("TERMINA CONCURSO " + concursante.getNombre());
+            System.out.println("GANADOR " + concursante.getNombre()+" ¡¡¡¡FELICIDADES!!!!");
         } else {
             System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundos");
             System.out.println("TERMINA CONCURSO " + concursante.getNombre());

@@ -39,6 +39,9 @@ public class MiConcurso {
 
         hilo1.start();
         hilo2.start();
+        
+        System.out.println(hilo1.isAlive());
+        System.out.println(hilo2.isAlive());
 
     }
 
