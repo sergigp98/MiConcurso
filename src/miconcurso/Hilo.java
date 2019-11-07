@@ -86,7 +86,7 @@ public class Hilo extends Thread {
     
     
     public static void DocumentosExplorador() throws IOException, InterruptedException {
-        String cmd = "start https://www.jesusninoc.com/08/25/crear-un-proceso-utilizando-processbuilder/"; 
+        String cmd = "start https://image.slidesharecdn.com/yakepregunatakathe-171117223539/95/preguntas-y-respuestas-24-638.jpg?cb=1510958203"; 
         ProcessBuilder pb = new ProcessBuilder("cmd", "/C", cmd);        
         Process process;
         process = pb.start();
