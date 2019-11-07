@@ -9,6 +9,8 @@ import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import static java.lang.Thread.sleep;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -17,19 +19,22 @@ import static java.lang.Thread.sleep;
 public class Proceso {
 
     public Proceso() throws InterruptedException, IOException {
-        DocumentosExplorador();
+        ArrancarGanador();
     }
-    
-    
-    
-    public static void DocumentosExplorador() throws IOException, InterruptedException {
-        String cmd = "https://image.slidesharecdn.com/yakepregunatakathe-171117223539/95/preguntas-y-respuestas-24-638.jpg?cb=1510958203"; 
-        ProcessBuilder pb = new ProcessBuilder("cmd", "/C", cmd);        
+
+    public static void ArrancarGanador() throws InterruptedException {
+        String cmd = "start https://image.slidesharecdn.com/yakepregunatakathe-171117223539/95/preguntas-y-respuestas-24-638.jpg?cb=1510958203";
+        ProcessBuilder pb = new ProcessBuilder("cmd", "/C", cmd);
         Process process;
-        process = pb.start();
-        InputStream inputstream = process.getInputStream();
-        BufferedInputStream bufferedinputstream = new BufferedInputStream(inputstream);
+        try {
+            process = pb.start();
+            InputStream inputstream = process.getInputStream();
+            BufferedInputStream bufferedinputstream = new BufferedInputStream(inputstream);
+        } catch (IOException ex) {
+            Logger.getLogger(Proceso.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
         sleep(2000);
     }
-    
+
 }
