@@ -5,6 +5,7 @@
  */
 package miconcurso;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 /**
@@ -16,7 +17,7 @@ public class MiConcurso {
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException, IOException {
 
         
         //INTRODUZCO LOS NOMBRES DE LOS CONCURSANTES Y LOS CREO
@@ -40,8 +41,7 @@ public class MiConcurso {
         hilo1.start();
         hilo2.start();
         
-        System.out.println(hilo1.isAlive());
-        System.out.println(hilo2.isAlive());
+        
 
     }
 
