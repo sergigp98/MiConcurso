@@ -16,9 +16,9 @@ import java.util.logging.Logger;
  *
  * @author Sergio
  */
-public class Proceso {
+public class ProcesoGanador {
 
-    public Proceso() throws InterruptedException, IOException {
+    public ProcesoGanador() throws InterruptedException, IOException {
         ArrancarGanador();
     }
 
@@ -31,7 +31,7 @@ public class Proceso {
             InputStream inputstream = process.getInputStream();
             BufferedInputStream bufferedinputstream = new BufferedInputStream(inputstream);
         } catch (IOException ex) {
-            Logger.getLogger(Proceso.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(ProcesoGanador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         sleep(2000);
