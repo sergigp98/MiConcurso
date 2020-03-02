@@ -5,7 +5,10 @@
  */
 package miconcurso;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -74,11 +77,20 @@ public class Hilo extends Thread {
                 //Guardo el ganador en un archivo txt
                 File f = new File("src/ganador.txt");
                 FileOutputStream fileOutputStream = new FileOutputStream(f);
-                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+                DataOutputStream dos = new DataOutputStream(fileOutputStream);
+                //ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
 
                 String ganador = concursante.getNombre();
-                objectOutputStream.writeUTF(ganador);
-                objectOutputStream.close();
+                dos.writeUTF(ganador);
+                //objectOutputStream.writeUTF(ganador);
+                //objectOutputStream.close();
+                
+                Concursante c;
+        File f2 = new File("src/ganador.txt");
+        FileInputStream fileInputStream = new FileInputStream(f2);
+        DataInputStream dis = new DataInputStream(fileInputStream);
+        String ganador2 = dis.readUTF();
+        System.out.println(ganador2);
 
             } else {
                 System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundos");

@@ -27,4 +27,10 @@ public class Concursante implements Serializable{
         this.nombre = nombre;
     }
 
+    @Override
+    public String toString() {
+        return "Concursante GANADOR{" + "nombre=" + nombre + '}';
+    }
+
+    
 }

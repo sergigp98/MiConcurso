@@ -63,11 +63,10 @@ public class Servidor {
         Concursante c;
         File f = new File("src/ganador.txt");
         FileInputStream fileInputStream = new FileInputStream(f);
-        ObjectInputStream objectInputStream = new ObjectInputStream(fileInputStream);
-
-        c = (Concursante) objectInputStream.readObject();
-        System.out.println(c.getNombre());
-        objectInputStream.close();
+        DataInputStream dis = new DataInputStream(fileInputStream);
+        String ganador = dis.readUTF();
+        System.out.println(ganador);
+        
 
         // CERRAR STREAMS Y SOCKETS
         flujoEntrada.close();
