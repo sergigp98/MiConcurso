@@ -5,11 +5,13 @@
  */
 package miconcurso;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Sergio
  */
-public class Concursante {
+public class Concursante implements Serializable{
 
     private String nombre;
 

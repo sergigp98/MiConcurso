@@ -5,7 +5,11 @@
  */
 package miconcurso;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.ObjectOutputStream;
 import java.util.Scanner;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -32,33 +36,50 @@ public class Hilo extends Thread {
     //INICIO EL HILO
     public void run() {
 
-        try {
-            
-            //System.out.println("Resultado: " + resultado)PRUEBA;
-            System.out.println("El concursante llamado " + concursante.getNombre() + " comienza en el " + this.nombre + ".");
-            
-            do {
-                System.out.println(concursante.getNombre().toUpperCase() + " introduce numero del 1 al 10");
-                numero = sc.nextInt();
-                try {
-                    if (resultado == numero) {
-                        break;
-                    } else {
-                        System.out.println(concursante.getNombre() + " ha fallado. Su numero era: " + numero);
-                        Thread.sleep(4000);//PARO EL HILO/PROCESO DURANTE ESE TIEMPO
+        //System.out.println("Resultado: " + resultado)PRUEBA;
+        System.out.println("El concursante llamado " + concursante.getNombre() + " comienza en el " + this.nombre + ".");
+
+        do {
+            System.out.println(concursante.getNombre().toUpperCase() + " introduce numero del 1 al 10");
+            numero = sc.nextInt();
+            try {
+                if (resultado == numero) {
+                    try {
+                        sacarGanador();
+                    } catch (IOException ex) {
+                        Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                } catch (InterruptedException ex) {
-                    
+                    break;
+                } else {
+                    System.out.println(concursante.getNombre() + " ha fallado. Su numero era: " + numero);
+                    Thread.sleep(4000);//PARO EL HILO/PROCESO DURANTE ESE TIEMPO
                 }
-                
-            } while (resultado != numero);
-            
+            } catch (InterruptedException ex) {
+
+            }
+
+        } while (resultado != numero);
+
+    }
+
+    public void sacarGanador() throws FileNotFoundException, IOException {
+        try {
             //CUANDO ACIERTA EL NUMERO CIERRO EL PROCESO Y SACO EL MENSAJE
             System.out.println("El concursante " + concursante.getNombre() + " ha acertado el resultado");
             if (((System.currentTimeMillis() - inicio) / 1000) == 1) {
                 System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundo");
                 System.out.println("TERMINA CONCURSO " + concursante.getNombre());
                 System.out.println("GANADOR " + concursante.getNombre() + " ¡¡¡¡FELICIDADES!!!!");
+
+                //Guardo el ganador en un archivo txt
+                File f = new File("src/ganador.txt");
+                FileOutputStream fileOutputStream = new FileOutputStream(f);
+                ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
+
+                String ganador = concursante.getNombre();
+                objectOutputStream.writeUTF(ganador);
+                objectOutputStream.close();
+
             } else {
                 System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundos");
                 System.out.println("TERMINA CONCURSO " + concursante.getNombre());
@@ -72,10 +93,11 @@ public class Hilo extends Thread {
                 Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
             }
             System.exit(0);
-            
+
             Thread.sleep(2000);
         } catch (InterruptedException ex) {
             Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+
 }

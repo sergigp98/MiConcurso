@@ -8,6 +8,7 @@ package miconcurso;
 import java.io.BufferedInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.Serializable;
 import static java.lang.Thread.sleep;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -16,7 +17,7 @@ import java.util.logging.Logger;
  *
  * @author Sergio
  */
-public class ProcesoGanador {
+public class ProcesoGanador implements Serializable{
 
     public ProcesoGanador() throws InterruptedException, IOException {
         ArrancarGanador();
