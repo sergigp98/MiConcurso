@@ -8,6 +8,8 @@ package Cliente;
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.net.ssl.SSLSocket;
 import javax.net.ssl.SSLSocketFactory;
 import miconcurso.Concursante;
@@ -20,46 +22,61 @@ import miconcurso.Panel_Login;
  */
 public class Cliente {
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String[] args) throws IOException {        
-        
-        Panel_Login login = new Panel_Login();
-        
-        
+    DataInputStream flujoEntrada;
+    DataOutputStream flujoSalida;
+
+    public Cliente() {
+
         // TODO code application logic here
         String Host = "localhost";
         int puerto = 5556;//puerto remoto
- 
+
         // Propiedades JSSE)
-        System.setProperty("javax.net.ssl.trustStore","C:\\Users\\sergi\\Desktop\\SERGIO\\DAM\\2º DAM\\NetBeansProjects\\MiConcurso\\src\\AlmacenClaves");
-        System.setProperty("javax.net.ssl.trustStorePassword","1234567");
- 
-        System.out.println("PROGRAMA CLIENTE INICIADO....");
- 
-        SSLSocketFactory sfact = (SSLSocketFactory) SSLSocketFactory.getDefault();
-        SSLSocket Cliente  = (SSLSocket) sfact.createSocket(Host, puerto);
-        
-        
- 
-        // CREO FLUJO DE SALIDA AL SERVIDOR
-        DataOutputStream flujoSalida = new DataOutputStream(Cliente.getOutputStream());
- 
-        // ENVIO UN SALUDO AL SERVIDOR
-        flujoSalida.writeUTF("HAS GANADO!!!!!!!!");
- 
-        // CREO FLUJO DE ENTRADA AL SERVIDOR
-        DataInputStream flujoEntrada = new DataInputStream(Cliente.getInputStream());
- 
-        
-        // EL servidor ME ENVIA UN MENSAJE
-        System.out.println("Recibiendo del SERVIDOR: \n\t" + flujoEntrada.readUTF());
- 
-        // CERRAR STREAMS Y SOCKETS
-        flujoEntrada.close();
-        flujoSalida.close();
-        Cliente.close();
+        System.setProperty("javax.net.ssl.trustStore", "C:\\Users\\Usuario DAM 2\\Documents\\NetBeansProjects\\MiConcurso\\src\\AlmacenClaves");
+        System.setProperty("javax.net.ssl.trustStorePassword", "1234567");
+
+        try {
+            SSLSocketFactory sfact = (SSLSocketFactory) SSLSocketFactory.getDefault();
+            SSLSocket Cliente = (SSLSocket) sfact.createSocket(Host, puerto);
+
+            flujoEntrada = new DataInputStream(Cliente.getInputStream());
+
+            flujoSalida = new DataOutputStream(Cliente.getOutputStream());
+
+            empiezaConcurso();
+            
+
+            concursoGanado();
+            // CERRAR STREAMS Y SOCKETS
+            flujoEntrada.close();
+            flujoSalida.close();
+            Cliente.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
+
+    public void empiezaConcurso() {
+        String juego = null;
+        try {
+            juego = flujoEntrada.readUTF();
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        System.out.println(juego);
+    }
+
+    public void concursoGanado() {
+        try {
+            flujoSalida.writeUTF("HAS GANADO!!!!!!!!");
+
+        } catch (IOException ex) {
+            Logger.getLogger(Cliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    
 
 }

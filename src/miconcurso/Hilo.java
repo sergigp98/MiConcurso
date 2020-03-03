@@ -75,35 +75,20 @@ public class Hilo extends Thread {
                 System.out.println("GANADOR " + concursante.getNombre() + " ¡¡¡¡FELICIDADES!!!!");
 
                 //Guardo el ganador en un archivo txt
-                File f = new File("src/ganador.txt");
-                FileOutputStream fileOutputStream = new FileOutputStream(f);
-                DataOutputStream dos = new DataOutputStream(fileOutputStream);
-                //ObjectOutputStream objectOutputStream = new ObjectOutputStream(fileOutputStream);
-
-                String ganador = concursante.getNombre();
-                dos.writeUTF(ganador);
-                //objectOutputStream.writeUTF(ganador);
-                //objectOutputStream.close();
-                
-                Concursante c;
-        File f2 = new File("src/ganador.txt");
-        FileInputStream fileInputStream = new FileInputStream(f2);
-        DataInputStream dis = new DataInputStream(fileInputStream);
-        String ganador2 = dis.readUTF();
-        System.out.println(ganador2);
+            
 
             } else {
                 System.out.println("HA TARDADO : " + ((System.currentTimeMillis() - inicio) / 1000) + " segundos");
                 System.out.println("TERMINA CONCURSO " + concursante.getNombre());
                 System.out.println("GANADOR " + concursante.getNombre() + " ¡¡¡¡FELICIDADES!!!!");
             }
-            try {
+            /*try {
                 ProcesoGanador proc = new ProcesoGanador();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
             } catch (IOException ex) {
                 Logger.getLogger(Hilo.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            }*/
             System.exit(0);
 
             Thread.sleep(2000);

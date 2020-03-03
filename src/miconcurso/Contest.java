@@ -17,6 +17,7 @@ public class Contest {
 
     public Contest() {
         //INTRODUZCO LOS NOMBRES DE LOS CONCURSANTES Y LOS CREO
+        
         Scanner sc = new Scanner(System.in);
         System.out.println("Introduce nombre concursante: ");
         String nombre = sc.next();

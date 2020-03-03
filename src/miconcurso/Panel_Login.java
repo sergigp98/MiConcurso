@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.WindowConstants;
 import utils.Usuario;
+import Cliente.Cliente;
 
 /**
  *
@@ -84,7 +85,10 @@ public class Panel_Login extends JFrame {
                 try{
                 if(usuario.getText().equals(login.getUsuario())|| password.getText().equals(login.getPassword())){
                     System.out.println("INICIO SESION CORRECTO");
-                    contest = new Contest();                    
+                    
+                  Cliente cliente = new Cliente();
+                  
+                  contest = new Contest();                    
                 }
                 }catch(NullPointerException e){
                     System.out.println("INICIO SESION INCORRECTO");
